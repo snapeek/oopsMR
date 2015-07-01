@@ -23,6 +23,7 @@ class SadPanda
   end
 
   def matched_content(content)
+    nc = false
     matched = content.to_s.scan(REG).map do |litem|
       litem ||= []
       {
@@ -38,6 +39,14 @@ class SadPanda
       }
     end
     matched
+  rescue
+    if nc
+      return {}
+    else
+      nc = true
+      matched = matched.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})
+      retry
+    end
   end
 
   def get_word(word)
