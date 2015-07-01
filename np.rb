@@ -49,11 +49,19 @@ def to_csv(file, rows, title = nil, encode = "utf-8")
   end
 end
 
-ARGV.each do |csv|
-  # to_csv(csv, [[1234, 1234,1234]], false)
+def load_csv(file)
+  ary = []
+  CSV.open(file, "r") do |csv|
+    ary << [csv[0], $s.start(text_proc(csv[0]))[0]]
+  end
+  ary
 end
-s = SadPanda.new
+
+ARGV.each do |csv|
+  ary = load_csv(file)
+  to_csv(csv.gsub('.csv', "_mr.csv"), ary, false)
+end
+$s = SadPanda.new
 nlpir_init(UTF8_CODE)
-binding.pry
 p options
 p ARGV
