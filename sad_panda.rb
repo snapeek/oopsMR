@@ -81,7 +81,7 @@ class SadPanda
   def arch_proc(matched ,emo = 1)
     arch = get_word(matched[:arch]) 
     arch2 = get_word(matched[:arch2]) 
-    p "#{matched[:arch]} #{po_or_ne(arch) } & #{matched[:arch2]} #{po_or_ne(arch2)}"
+    # p "#{matched[:arch]} #{po_or_ne(arch) } & #{matched[:arch2]} #{po_or_ne(arch2)}"
     emo *= (po_or_ne(arch) + po_or_ne(arch2))
   end
 
@@ -108,7 +108,7 @@ class SadPanda
     _mc += 1 if _mc == 0
     av_emo = all_emo / _mc if av_emo == 0
     av_emo = 0 if all_emo == 0
-    p ">极性值#{av_emo.round(2)} 情感指数#{all_emo.round(2)} "
+    # p ">极性值#{av_emo.round(2)} 情感指数#{all_emo.round(2)} "
     [av_emo.round(2), all_emo.round(2)]
   end
 
