@@ -52,7 +52,8 @@ end
 def load_csv(file)
   ary = []
   CSV.open(file, "r") do |csv|
-    ary << [csv[0], $s.start(text_proc(csv[0]))[0]]
+    line = csv.readline
+    ary << [line[0], $s.start(text_proc(line[0]))[0]]
   end
   ary
 end
