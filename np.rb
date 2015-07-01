@@ -59,7 +59,7 @@ end
 
 $s = SadPanda.new
 nlpir_init(UTF8_CODE)
-
+binding.pry
 ARGV.each do |csv|
   ary = load_csv(csv)
   to_csv(csv.gsub('.csv', "_mr.csv"), ary, false)
