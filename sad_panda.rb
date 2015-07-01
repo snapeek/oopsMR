@@ -103,9 +103,10 @@ class SadPanda
       emo = punc_proc(matched, emo)
       _mc += 1 if emo != 0
       all_emo += emo
-      av_emo *= emo if emo != 0
+      av_emo *= emo 
     end
     _mc += 1 if _mc == 0
+    av_emo = all_emo / _mc if av_emo == 0
     p ">极性值#{av_emo.round(2)} 情感指数#{all_emo.round(2)} "
     [av_emo.round(2), all_emo.round(2)]
   end
