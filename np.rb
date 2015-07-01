@@ -57,11 +57,13 @@ def load_csv(file)
   ary
 end
 
+$s = SadPanda.new
+nlpir_init(UTF8_CODE)
+
 ARGV.each do |csv|
   ary = load_csv(csv)
   to_csv(csv.gsub('.csv', "_mr.csv"), ary, false)
 end
-$s = SadPanda.new
-nlpir_init(UTF8_CODE)
+nlpir_exit()
 p options
 p ARGV
