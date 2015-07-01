@@ -44,7 +44,7 @@ class SadPanda
       return {}
     else
       nc = true
-      matched = matched.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})
+      content = content.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})
       retry
     end
   end
