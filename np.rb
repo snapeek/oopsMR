@@ -1,14 +1,13 @@
 #!/usr/bin/env ruby
 
-# require './nlpir'
 require './sad_panda'
-
+require './nlpir'
 
 require 'optparse'
 require 'ostruct'
 require 'csv'
 require 'pry'
-
+include Nlpir
 options = OpenStruct.new
 
 OptionParser.new do |opts|
@@ -54,6 +53,7 @@ ARGV.each do |csv|
   # to_csv(csv, [[1234, 1234,1234]], false)
 end
 s = SadPanda.new
+nlpir_init(UTF8_CODE)
 binding.pry
 p options
 p ARGV

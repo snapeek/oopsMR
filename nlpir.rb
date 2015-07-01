@@ -31,7 +31,7 @@ module Nlpir
  
  NLPIR_Init_rb = Fiddle::Function.new(
     libm['NLPIR_Init'],
-    [Fiddle::TYPE_VOIDP,Fiddle::TYPE_INT],
+    [Fiddle::TYPE_VOIDP,Fiddle::TYPE_INT, Fiddle::TYPE_VOIDP],
     Fiddle::TYPE_INT
   )
   NLPIR_Exit_rb = Fiddle::Function.new(
@@ -148,7 +148,7 @@ module Nlpir
 
   #--函数
 
-  def nlpir_init(sInitDirPath=nil , encoding=UTF8_CODE) 
+  def nlpir_init(encoding=UTF8_CODE) 
     @charset = 'gbk' if encoding == GBK_CODE
     @charset = 'utf-8' if encoding == UTF8_CODE
     @charset = 'big5' if  encoding == BIG5_CODE
