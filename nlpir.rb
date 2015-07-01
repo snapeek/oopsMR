@@ -153,7 +153,7 @@ module Nlpir
     @charset = 'utf-8' if encoding == UTF8_CODE
     @charset = 'big5' if  encoding == BIG5_CODE
     @charset = 'gbk' if encoding == GBK_FANTI_CODE
-    NLPIR_Init_rb.call(nil, encoding)
+    NLPIR_Init_rb.call(nil, encoding, nil)
   end
 
   def nlpir_exit()
