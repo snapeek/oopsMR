@@ -52,8 +52,9 @@ end
 def load_csv(file)
   ary = []
   CSV.open(file, "r") do |csv|
-    line = csv.readline
-    ary << [line[0], $s.start(text_proc(line[0]))[0]]
+    while line = csv.readline
+      ary << [line[0], $s.start(text_proc(line[0]))[0]]
+    end
   end
   ary
 end
@@ -61,9 +62,9 @@ end
 $s = SadPanda.new
 nlpir_init(UTF8_CODE)
 binding.pry
-ARGV.each do |csv|
-  ary = load_csv(csv)
-  to_csv(csv.gsub('.csv', "_mr.csv"), ary, false)
+ARGV.each do |file|
+  ary = load_csv(file)
+  to_csv(file.gsub('.csv', "_mr.csv"), ary, false)
 end
 nlpir_exit()
 p options
