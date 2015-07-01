@@ -58,7 +58,7 @@ def load_csv(file)
 end
 
 ARGV.each do |csv|
-  ary = load_csv(file)
+  ary = load_csv(csv)
   to_csv(csv.gsub('.csv', "_mr.csv"), ary, false)
 end
 $s = SadPanda.new
