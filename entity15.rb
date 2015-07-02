@@ -34,7 +34,6 @@ class Entity15
 
   def pick_up
     @csv_line = []
-    binding.pry
     pick_content
     pick_envent
     pick_people

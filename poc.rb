@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require './entity15'
+require "csv"
 
 $e = Entity15.new
 
@@ -39,6 +40,7 @@ def to_csv(file, rows, title = nil, encode = "utf-8")
     end
   end
 end
+file = ARGV.first
 binding.pry
 # ARGV.each do |file|
 #   ary = load_csv(file)
