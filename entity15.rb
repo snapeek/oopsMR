@@ -37,7 +37,7 @@ class Entity15
     pick_content
     pick_envent
     pick_people
-    # pick_np
+    pick_np
     csv_line
   end
 
