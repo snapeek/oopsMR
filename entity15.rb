@@ -4,6 +4,13 @@ require "pry"
 
 class Entity15
   include Nlpir
+  @@od_positive = nil
+  @@od_negative = nil
+  @@people = nil
+  @@event = nil
+  @@content = nil
+  @@sad_panda = nil
+
   def initialize
     nlpir_init(UTF8_CODE)
     self.class._load_mappings if !@@event
