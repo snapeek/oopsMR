@@ -38,6 +38,7 @@ class Entity15
     pick_envent
     pick_people
     pick_np
+    csv_line
   end
 
   def pick_ori
@@ -83,8 +84,8 @@ class Entity15
   def pick_np
     ary = @@sad_panda.start(str_proced)
     csv_line << ary[0]
-    csv_line << @@od_positive & ary[2..3].map{|e| e.gsub(/\/v\S*/, "")}
-    csv_line << @@od_negative & ary[2..3].map{|e| e.gsub(/\/v\S*/, "")}
+    csv_line << (@@od_positive[:positive] & ary[2..3].map{|e| e.to_s.gsub(/\/v\S*/, "")})
+    csv_line << (@@od_negative[:negative] & ary[2..3].map{|e| e.to_s.gsub(/\/v\S*/, "")})
   end
 
   private
