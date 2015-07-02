@@ -28,7 +28,7 @@ class Entity15
 
   def add_userdict
     @@people.each_value do |ev|
-      add_userword("#{ev} nr")
+      ev.each{|e| add_userword("#{e} nr")}
     end
   end
 
