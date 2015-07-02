@@ -1,11 +1,20 @@
 #!/usr/bin/env ruby
 
-require './sad_panda'
-require './nlpir'
+require './entity15'
 
-require 'optparse'
-require 'ostruct'
-require 'csv'
-require 'pry'
+e = Entity15.new
 
-include Nlpir
+def load_csv(file)
+  ary = []
+  CSV.open(file, "r") do |csv|
+    while line = csv.readline
+      ary << line + e.pick(line[3])
+    end
+  end
+  ary
+end
+
+ARGV.each do |file|
+  ary = load_csv(file)
+  to_csv(file.gsub('.csv', "_mr.csv"), ary, false)
+end

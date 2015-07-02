@@ -34,8 +34,6 @@ class Entity15
 
   def pick_up
     @csv_line = []
-    binding.pry
-    pick_ori
     pick_content
     pick_envent
     pick_people
@@ -101,6 +99,3 @@ class Entity15
   end
 
 end
-e = Entity15.new
-e.pick '聪明的心机妹和台妹没有文化的做饭'
-binding.pry
