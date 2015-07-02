@@ -36,7 +36,7 @@ class Entity15
     @csv_line = []
     pick_content
     pick_envent
-    # pick_people
+    pick_people
     # pick_np
     csv_line
   end
