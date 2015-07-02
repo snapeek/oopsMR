@@ -34,6 +34,7 @@ class Entity15
 
   def pick_up
     @csv_line = []
+    binding.pry
     pick_content
     pick_envent
     pick_people
@@ -83,7 +84,8 @@ class Entity15
   def pick_np
     ary = @@sad_panda.start(str_proced)
     csv_line << ary[0]
-    csv_line << ary[2..3].join(' ')
+    csv_line << @@od_positive & ary[2..3].map{|e| e.gsub(/\/v\S*/, "")}
+    csv_line << @@od_negative & ary[2..3].map{|e| e.gsub(/\/v\S*/, "")}
   end
 
   private
