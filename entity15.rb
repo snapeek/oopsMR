@@ -16,12 +16,12 @@ class Entity15
     self.class._load_mappings if !@@event
   end
 
-  attr_accessor :str, :str_ary, :str_wary, :csv_line
+  attr_accessor :str, :str_ary, :str_proced, :csv_line
 
   def pick(str)
     @str = str
-    @str_ary = text_proc(str, 0)
-    @str_wary = text_proc(str, 1)
+    @str_ary = text_proc(str, 0).split(' ').select{|e| e}
+    @str_proced = text_proc(str, 1)
     pick_up
   end
 
@@ -75,7 +75,7 @@ class Entity15
   end
 
   def pick_np
-    ary = @@sad_panda.start(str_wary)
+    ary = @@sad_panda.start(str_proced)
     csv_line << ary[0]
     csv_line << ary[2..3].join(' ')
   end
