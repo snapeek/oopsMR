@@ -51,7 +51,7 @@ class Entity15
   end
 
   def pick_envent
-    ary = @@event[:envent] & str_ary
+    ary = @@event[:event] & str_ary
     if ary.count > 0
       csv_line << 1
       csv_line << ary.join(' ')
@@ -63,7 +63,7 @@ class Entity15
 
   def pick_people
     ary = []
-    @@people[:envent].each do |people, pary|
+    @@people.each do |people, pary|
       ary += (pary & str_ary)
     end
     if ary.count > 0
