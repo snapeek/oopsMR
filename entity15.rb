@@ -23,7 +23,7 @@ class Entity15
     @str = str
     @str_ary = text_proc(str, 0).split(' ').select{|e| e}
     @str_proced = text_proc(str, 1)
-    pick_up
+    # pick_up
   end
 
   def add_userdict
