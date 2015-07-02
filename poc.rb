@@ -7,11 +7,11 @@ $e = Entity15.new
 
 def load_csv(file)
   ary = []
-  CSV.open(file, "r") do |csv|
-    while line = csv.readline
-      ary << line + $e.pick(line[3])
-    end
+  csv = CSV.open(file, "r")
+  while line = csv.readline
+    ary << (line + $e.pick(line[3]))
   end
+  csv.close
   ary
 end
 
