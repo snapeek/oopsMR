@@ -43,7 +43,7 @@ def to_csv(file, rows, title = nil, encode = "utf-8")
 end
 file = ARGV.first
 binding.pry
-# ARGV.each do |file|
-#   ary = load_csv(file)
-#   to_csv(file.gsub('.csv', "_mr.csv"), ary, false)
-# end
+ARGV.each do |file|
+  ary = load_csv(file)
+  to_csv(file.gsub('.csv', "_poc.csv"), ary, false)
+end

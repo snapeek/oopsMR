@@ -1,6 +1,6 @@
 require 'pry'
 require 'optparse'  
-require 'CSV'  
+require 'csv'  
 
 ARGV.each do |file|
   CSV.open(file, "r") do |csv|
