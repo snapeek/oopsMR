@@ -109,9 +109,11 @@ class SadPanda
     all_emo = 0
     av_emo = 1
     _mc = 0
+    matched_h = nil
     matched_content(content).each do |matched|
       emo = adverb_proc(matched)
       # puts ">副词判定为 #{emo}"
+       = matched
       emo = arch_proc(matched, emo)
       # puts ">定位词 #{matched} 得分为 #{emo}"
       emo = punc_proc(matched, emo)
@@ -123,7 +125,7 @@ class SadPanda
     av_emo = all_emo / _mc if av_emo == 0
     av_emo = 0 if all_emo == 0
     # p ">极性值#{av_emo.round(2)} 情感指数#{all_emo.round(2)} "
-    [av_emo.round(2), all_emo.round(2), matched[:arch], matched[:arch]]
+    [av_emo.round(2), all_emo.round(2), matched_h[:arch], matched_h[:arch]]
   end
 
   def self._load_mappings

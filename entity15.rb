@@ -95,4 +95,5 @@ class Entity15
 
 end
 e = Entity15.new
+e.pick '聪明的心机妹和台妹没有文化的做饭'
 binding.pry
