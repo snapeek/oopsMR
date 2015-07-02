@@ -84,8 +84,8 @@ class Entity15
   def pick_np
     ary = @@sad_panda.start(str_proced)
     csv_line << ary[0]
-    csv_line << (@@od_positive[:positive] & ary[2..3].map{|e| e.to_s.gsub(/\/v\S*/, "")}).join(' ')
-    csv_line << (@@od_negative[:negative] & ary[2..3].map{|e| e.to_s.gsub(/\/v\S*/, "")}).join(' ')
+    cstr = (@@od_positive[:positive] & str_ary).join(' ') + (@@od_negative[:negative] & str_ary).join(' ')
+    csv_line << cstr
   end
 
   private
