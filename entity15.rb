@@ -8,7 +8,7 @@ class Entity15
     self.class._load_mappings if !@@event
   end
 
-  attr_accessor str, str_ary, str_wary, csv_line
+  attr_accessor :str, :str_ary, :str_wary, :csv_line
 
   def pick(str)
     @str = str
