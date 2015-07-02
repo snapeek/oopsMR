@@ -125,7 +125,7 @@ class SadPanda
     av_emo = all_emo / _mc if av_emo == 0
     av_emo = 0 if all_emo == 0
     # p ">极性值#{av_emo.round(2)} 情感指数#{all_emo.round(2)} "
-    [av_emo.round(2), all_emo.round(2), matched_h[:arch], matched_h[:arch2]]
+    [av_emo.round(2), all_emo.round(2), '', '']
   end
 
   def self._load_mappings
