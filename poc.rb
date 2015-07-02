@@ -9,7 +9,7 @@ def load_csv(file)
   ary = []
   csv = CSV.open(file, "r")
   while line = csv.readline
-    $e.pick(line[3])
+    p $e.pick(line[3])
     # ary << (line + $e.pick(line[3]))
   end
   csv.close
