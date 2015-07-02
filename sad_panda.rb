@@ -81,8 +81,13 @@ class SadPanda
     if word.nil?
       0
     else
-      return 1 if @@positive[:positive].include?(word) || @@positive_h[:positive].include?(word)
-      return -1 if @@negative[:negative].include?(word) || @@negative_h[:negative].include?(word)
+      return 1 if @@positive[:positive].include?(word) ||
+                  @@positive_h[:positive].include?(word) ||
+                  @@positive_od[:positive].include?(word)
+      return -1 if @@negative[:negative].include?(word) || 
+                   @@negative_h[:negative].include?(word) ||
+                   @@negative_od[:negative].include?(word)
+
     end
     0
   end
@@ -126,8 +131,10 @@ class SadPanda
     data_root = File.expand_path('../dict', __FILE__)
     @@positive = YAML::load(File.read("#{data_root}/tsinghua.positive.utf8.yml"))
     @@positive_h = YAML::load(File.read("#{data_root}/hownet.positive.yml"))
+    @@positive_od = YAML::load(File.read("#{data_root}/od.positive.yml"))
     @@negative = YAML::load(File.read("#{data_root}/tsinghua.negative.utf8.yml"))
     @@negative_h = YAML::load(File.read("#{data_root}/hownet.negative.yml"))
+    @@negative_od = YAML::load(File.read("#{data_root}/od.negative.yml"))
     @@level = YAML::load(File.read("#{data_root}/level.yml"))
     # binding.pry
     # while (line = word_file.gets)
