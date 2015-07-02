@@ -1,5 +1,6 @@
 require "./nlpir"
 require "./sad_panda"
+require "pry"
 
 class Entity15
   include Nlpir
@@ -84,5 +85,6 @@ class Entity15
     @@sad_panda = SadPanda.new
   end
 
-
 end
+
+binding.pry
