@@ -50,7 +50,7 @@ class Entity15
   end
 
   def pick_envent
-    ary = @@envent[:envent] & str_ary
+    ary = @@event[:envent] & str_ary
     if ary.count > 0
       csv_line << 1
       csv_line << ary.join(' ')
