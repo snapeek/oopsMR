@@ -93,5 +93,5 @@ class Entity15
   end
 
 end
-
+e = Entity15.new
 binding.pry
