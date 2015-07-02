@@ -14,6 +14,7 @@ class Entity15
   def initialize
     nlpir_init(UTF8_CODE)
     self.class._load_mappings if !@@event
+    add_userdict
   end
 
   attr_accessor :str, :str_ary, :str_proced, :csv_line
@@ -23,6 +24,12 @@ class Entity15
     @str_ary = text_proc(str, 0).split(' ').select{|e| e}
     @str_proced = text_proc(str, 1)
     pick_up
+  end
+
+  def add_userdict
+    @@people.each_value do |ev|
+      add_userword("#{ev} nr")
+    end
   end
 
   def pick_up
