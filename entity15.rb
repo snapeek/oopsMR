@@ -35,7 +35,7 @@ class Entity15
   def pick_up
     @csv_line = []
     pick_content
-    # pick_envent
+    pick_envent
     # pick_people
     # pick_np
     csv_line
