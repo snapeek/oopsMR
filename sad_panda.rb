@@ -113,7 +113,7 @@ class SadPanda
     matched_content(content).each do |matched|
       emo = adverb_proc(matched)
       # puts ">副词判定为 #{emo}"
-       = matched
+      matched_h = matched
       emo = arch_proc(matched, emo)
       # puts ">定位词 #{matched} 得分为 #{emo}"
       emo = punc_proc(matched, emo)
