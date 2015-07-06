@@ -2,6 +2,7 @@
 
 require './entity15'
 require "csv"
+require 'timeout'
 
 $e = Entity15.new
 
@@ -12,8 +13,14 @@ def load_csv(file)
   while line = csv.readline
     # ary << $e.pick(line[3])
     i += 1
-    puts("-----#{i % 1000}-----") if i % 1000 == 0
-    ary << (line + $e.pick(line[8]))
+    puts("-----#{i / 1000}-----") if i % 1000 == 0
+    begin
+      status = Timeout::timeout(5) {
+        ary << (line + $e.pick(line[8]))
+      }
+    rescue Timeout::Error
+      next
+    end
   end
   csv.close
   ary
