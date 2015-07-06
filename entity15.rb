@@ -21,7 +21,7 @@ class Entity15
 
   def pick(str)
     @str = str
-    @str_ary = text_proc(str, 0).to_s.split(' ').select{|e| e}
+    @str_ary = text_proc(str, 0).to_s.encode('gbk','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''}).split(' ').select{|e| e}
     @str_proced = text_proc(str, 1)
     pick_up
   end
