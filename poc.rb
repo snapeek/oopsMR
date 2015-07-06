@@ -16,7 +16,8 @@ def load_csv(file)
     puts("-----#{i / 1000}-----") if i % 1000 == 0
     begin
       status = Timeout::timeout(5) {
-        ary << (line + $e.pick(line[8]))
+
+        ary << (line + $e.pick(line[2]))
       }
     rescue Timeout::Error
       next
