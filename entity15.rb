@@ -20,8 +20,8 @@ class Entity15
   attr_accessor :str, :str_ary, :str_proced, :csv_line
 
   def pick(str)
-    @str = str.to_s.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})
-    @str_ary = text_proc(str, 0).split(' ').select{|e| e}
+    @str = str
+    @str_ary = text_proc(str, 0).to_s.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''}).split(' ').select{|e| e}
     @str_proced = text_proc(str, 1)
     pick_up
   end
