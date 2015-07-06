@@ -8,8 +8,10 @@ $e = Entity15.new
 def load_csv(file)
   ary = []
   csv = CSV.open(file, "r")
+  i = 0
   while line = csv.readline
     # ary << $e.pick(line[3])
+    puts("-----------") if i++ % 1000 == 0
     ary << (line + $e.pick(line[8]))
   end
   csv.close
