@@ -53,7 +53,11 @@ def load_csv(file)
   ary = []
   CSV.open(file, "r") do |csv|
     while line = csv.readline
-      ary << [line[0], $s.start(text_proc(line[0]))[0]]
+      begin
+        ary << [line[0], $s.start(text_proc(line[0]))[0]]
+      rescue Exception => e
+        ary << line[0]
+      end
     end
   end
   ary
