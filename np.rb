@@ -52,7 +52,7 @@ end
 def load_csv(file)
   ary = []
   i = 0
-  CSV.open(file, "r") do |csv|
+  CSV.open(file, "r:bom|utf-8") do |csv|
     while line = csv.readline
       i += 1
       begin
