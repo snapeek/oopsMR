@@ -72,8 +72,9 @@ nlpir_init(UTF8_CODE)
 binding.pry
 ARGV.each do |file|
   ary = load_csv(file)
+  binding.pry
   to_csv(file.gsub('.csv', "_mr.csv"), ary, false)
 end
 nlpir_exit()
-p options
-p ARGV
+# p options
+# p ARGV
