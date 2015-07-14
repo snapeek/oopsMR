@@ -60,7 +60,7 @@ def load_csv(file)
         Timeout::timeout(5) {
           ary << [line[0], $s.start(text_proc(line[0]))[0]]
         }
-        puts "poc on line #{i}" if i % 1000 == 0
+        puts "poc on line #{i}" if i % 50 == 0
       rescue Timeout::Error
         puts "timeout on line #{i}"
         ary << line[0]
