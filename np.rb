@@ -61,6 +61,7 @@ def load_csv(file)
           ary << [line[0], $s.start(text_proc(line[0]))[0]]
         }
       rescue Timeout::Error
+        puts "timeout on line #{i}"
         next
       rescue Exception => e
         binding.pry
