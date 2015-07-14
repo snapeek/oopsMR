@@ -63,7 +63,7 @@ def load_csv(file)
         puts "poc on line #{i}" if i % 1000 == 0
       rescue Timeout::Error
         puts "timeout on line #{i}"
-        next
+        ary << line[0]
       rescue Exception => e
         binding.pry
         puts "error on line #{i}"
