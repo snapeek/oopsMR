@@ -7,6 +7,7 @@ require 'optparse'
 require 'ostruct'
 require 'csv'
 require 'pry'
+require 'timeout'
 include Nlpir
 options = OpenStruct.new
 
@@ -56,7 +57,11 @@ def load_csv(file)
     while line = csv.readline
       i += 1
       begin
-        ary << [line[0], $s.start(text_proc(line[0]))[0]]
+        Timeout::timeout(5) {
+          ary << [line[0], $s.start(text_proc(line[0]))[0]]
+        }
+      rescue Timeout::Error
+        next
       rescue Exception => e
         binding.pry
         puts "error on line #{i}"
