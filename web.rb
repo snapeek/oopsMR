@@ -37,7 +37,12 @@ post "/sent" do
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
-  to_csv(target ,csv)
+  new_file_name = to_csv(target ,csv)
+  binding.pry
+  # send_file
+  #response.headers['content_type'] = "application/octet-stream"
+  #attachment(new_file_name)
+  #response.write(File.read(new_file_name, 'r'))  
 end
 
 
