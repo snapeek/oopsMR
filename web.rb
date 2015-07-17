@@ -24,13 +24,13 @@ get "/" do
   erb :form
 end
 
-post "/upload" do
+post "/sent" do
   binding.pry
   unless params[:file] &&  
       (tempfile = params[:file][:tempfile]) &&  
       (filename = params[:file][:filename])  
     @error = 'No file selected'  
-    redirect to('/')  
+    redirect to('/')
   end
   target = "./files/#{filename}"  
   File.open(target, 'wb') {|f| f.write tempfile.read }
