@@ -37,7 +37,7 @@ post "/sent" do
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
-  to_csv(csv)
+  to_csv(target ,csv)
 end
 
 
