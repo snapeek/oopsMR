@@ -147,10 +147,6 @@ module Nlpir
   #--函数
 
   def nlpir_init(encoding=UTF8_CODE) 
-    'utf-8' = 'gbk' if encoding == GBK_CODE
-    'utf-8' = 'utf-8' if encoding == UTF8_CODE
-    'utf-8' = 'big5' if  encoding == BIG5_CODE
-    'utf-8' = 'gbk' if encoding == GBK_FANTI_CODE
     NLPIR_Init_rb.call(nil, encoding, nil)
   end
 
