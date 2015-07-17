@@ -33,11 +33,11 @@ post "/sent" do
     @error = 'No file selected'  
     redirect to('/')
   end
-  target = "./files/#{filename}"  
+  target = "./files/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
-  new_file_name = to_csv(target ,csv)
+  new_file_name = to_csv(target.gsub(".csv", "_#{params[:poc]}.csv") ,csv)
   send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)
 end
 
