@@ -43,7 +43,6 @@ def load_ori(file, block)
     while line = csv.readline
       i += 1
       begin
-        binding.pry
         Timeout::timeout(5) {
           line.map!{|str| str.to_s.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
           ary << block.call(line)

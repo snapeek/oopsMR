@@ -38,8 +38,8 @@ post "/sent" do
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
   new_file_name = to_csv(target ,csv)
-  binding.pry
-  # send_file
+  # binding.pry
+  send_file(new_file_name, :type => "text/csv")
   #response.headers['content_type'] = "application/octet-stream"
   #attachment(new_file_name)
   #response.write(File.read(new_file_name, 'r'))  
@@ -53,11 +53,11 @@ def select_poc(poc, n = 0)
       line << text_proc(line[n])
     }
   when "s"
-    ->{
+    ->(line){
       line << $s.start(text_proc(line[n]))
     }
   when "g"
-    ->{
+    ->(line){
       line << line.map { |str| str.to_s.encode('gbk','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
     }
   end
