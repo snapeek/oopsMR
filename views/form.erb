@@ -7,9 +7,12 @@
 <body>
 <form action='/sent' enctype="multipart/form-data" method='POST'>  
     <input name="file" type="file" />
+    处理第<input name="n" type="input" value="0" />行 <br/>
+
     <input name="poc" type="radio" value="f" /> 分词
     <input name="poc" type="radio" value="s" /> 感情色彩分析
     <input name="poc" type="radio" value="g" /> 转换成GBK
+    <br/>
     <input type="submit" value="Upload" />  
 </form> 
 
