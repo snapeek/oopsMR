@@ -23,6 +23,7 @@ configure :production, :development do
 end
 
 get "/" do
+  @files = Dir.glob("files/*.csv").map { |e| e.gsub('files/', '') }
   erb :form
 end
 
