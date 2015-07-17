@@ -11,7 +11,7 @@ $s = SadPanda.new
 nlpir_init(UTF8_CODE)
 
 configure do
-  set :public_folder, "#{File.dirname(__FILE__)}/assets"
+  set :public_folder, "#{File.dirname(__FILE__)}/files"
   set :views, "#{File.dirname(__FILE__)}/views"
   set :show_exceptions, :after_handler
   set :environment, :production
@@ -23,7 +23,6 @@ configure :production, :development do
 end
 
 get "/" do
-  # @profiles = Profile.all
   erb :form
 end
 
