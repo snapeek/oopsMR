@@ -40,9 +40,11 @@ def load_ori(file, block)
   ary = []
   i = 0
   CSV.open(file, "r") do |csv|
-    while line = csv.readline
+    while true
       i += 1
       begin
+        line = csv.readline
+        break unless line
         Timeout::timeout(5) {
           line.map!{|str| str.to_s.gsub(/[\r\n]*/, '').encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
           ary << block.call(line)
