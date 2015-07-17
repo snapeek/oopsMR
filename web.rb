@@ -14,6 +14,7 @@ configure do
   set :public_folder, "#{File.dirname(__FILE__)}/assets"
   set :views, "#{File.dirname(__FILE__)}/views"
   set :show_exceptions, :after_handler
+  set :environment, :production
 end
 
 configure :production, :development do
