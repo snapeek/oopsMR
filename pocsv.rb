@@ -11,7 +11,10 @@ def to_csv(file, rows, title = nil, encode = "utf-8")
     end
     if encode == "utf-8"
       csv << title if title 
-      rows.each{ |row| csv << (block_given? ? yield(row) : row) }
+      rows.each do |row| 
+        row = row.each{|str| str.to_s.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''}) }
+        csv << (block_given? ? yield(row) : row) 
+      end
     else
       csv << title.map!{|str| str.to_s.encode(encode, 'utf-8',{:invalid => :replace, :undef => :replace, :replace => '?'}) } if title  
       rows.each do |row| 
