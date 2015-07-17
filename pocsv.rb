@@ -44,7 +44,7 @@ def load_ori(file, block)
       i += 1
       begin
         Timeout::timeout(5) {
-          line.map!{|str| str.to_s.encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
+          line.map!{|str| str.to_s.gsub(/[\r\n]*/, '').encode('utf-8','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
           ary << block.call(line)
         }
         puts "poc on line #{i}" if i % 5 == 0
