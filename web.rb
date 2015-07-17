@@ -43,7 +43,7 @@ post "/sent" do
 end
 
 def select_poc(poc, n = 0)
-  n = n >0 ? n : 0
+  n = n >=0 ? n : 0
   case poc
   when "f"
     ->(line){
