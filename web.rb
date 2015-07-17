@@ -38,8 +38,7 @@ post "/sent" do
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
   new_file_name = to_csv(target ,csv)
-  new_file_name = new_file_name.split('/').last
-  send_file(new_file_name, :type => "text/csv", :filename => new_file_name)
+  send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)
 end
 
 
