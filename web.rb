@@ -15,6 +15,7 @@ configure do
   set :views, "#{File.dirname(__FILE__)}/views"
   set :show_exceptions, :after_handler
   set :environment, :production
+  set :timeout, :200
 end
 
 configure :production, :development do
