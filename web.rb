@@ -54,7 +54,7 @@ def select_poc(poc, n = 0)
     }
   when "s"
     ->(line){
-      line << $s.start(text_proc(line[n]))
+      line << $s.start(text_proc(line[n]))[0]
     }
   when "g"
     ->(line){
