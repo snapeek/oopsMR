@@ -54,7 +54,7 @@ def select_poc(poc, n = 0)
     }
   when "g"
     ->(line){
-      line << line.map { |str| str.to_s.encode('gbk','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
+      line.map { |str| str.to_s.encode('gbk','utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
     }
   end
 end
