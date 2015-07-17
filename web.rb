@@ -34,6 +34,7 @@ post "/sent" do
     redirect to('/')
   end
   target = "./files/#{filename}"
+  binding.pry
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
