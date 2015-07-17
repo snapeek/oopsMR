@@ -11,7 +11,7 @@ $s = SadPanda.new
 nlpir_init(UTF8_CODE)
 
 configure do
-  # set :public_folder, "#{File.dirname(__FILE__)}/files"
+  set :public_folder, "#{File.dirname(__FILE__)}/files"
   set :views, "#{File.dirname(__FILE__)}/views"
   set :show_exceptions, :after_handler
   set :environment, :production
@@ -38,6 +38,7 @@ post "/sent" do
   poc = select_poc(params[:poc], params[:n].to_i)
   csv = load_ori(target, poc)
   new_file_name = to_csv(target ,csv)
+  binding.pry
   send_file(new_file_name, :type => "text/csv")
 end
 
