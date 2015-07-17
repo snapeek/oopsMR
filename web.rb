@@ -36,13 +36,14 @@ post "/sent" do
   end
   target = "./files/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
-  poc = select_poc(params[:poc], params[:n].to_i)
+  poc = select_poc(params[:poc], params[:n].to_i - 1)
   csv = load_ori(target, poc)
   new_file_name = to_csv(target.gsub(".csv", "_#{params[:poc]}.csv") ,csv)
   send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)
 end
 
 def select_poc(poc, n = 0)
+  n = n >0 ? n : 0
   case poc
   when "f"
     ->(line){
