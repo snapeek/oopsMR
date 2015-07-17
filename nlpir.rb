@@ -24,8 +24,6 @@ module Nlpir
   BIG5_CODE = GBK_CODE + 2                          #BIG5编码
   GBK_FANTI_CODE = GBK_CODE + 3             #GBK编码，里面包含繁体字
 
-  @charset = 'utf-8'
-
   #提取链接库接口
   libm = Fiddle.dlopen(File.expand_path("../libNLPIR.so", __FILE__))
  
@@ -149,10 +147,10 @@ module Nlpir
   #--函数
 
   def nlpir_init(encoding=UTF8_CODE) 
-    @charset = 'gbk' if encoding == GBK_CODE
-    @charset = 'utf-8' if encoding == UTF8_CODE
-    @charset = 'big5' if  encoding == BIG5_CODE
-    @charset = 'gbk' if encoding == GBK_FANTI_CODE
+    'utf-8' = 'gbk' if encoding == GBK_CODE
+    'utf-8' = 'utf-8' if encoding == UTF8_CODE
+    'utf-8' = 'big5' if  encoding == BIG5_CODE
+    'utf-8' = 'gbk' if encoding == GBK_FANTI_CODE
     NLPIR_Init_rb.call(nil, encoding, nil)
   end
 
@@ -165,7 +163,7 @@ module Nlpir
   end
 
   def text_proc(sParagraph, bPOStagged=NLPIR_TRUE)
-    NLPIR_ParagraphProcess_rb.call(sParagraph, bPOStagged).to_s.force_encoding(@charset)
+    NLPIR_ParagraphProcess_rb.call(sParagraph, bPOStagged).to_s.force_encoding('utf-8')
   end
 
   def text_procA(sParagraph)
@@ -215,21 +213,21 @@ module Nlpir
   end
 
   def text_keywords(sLine, nMaxKeyLimit=50, bWeightOut=NLPIR_FALSE)
-    NLPIR_GetKeyWords_rb.call(sLine, nMaxKeyLimit, bWeightOut).to_s.force_encoding(@charset)
+    NLPIR_GetKeyWords_rb.call(sLine, nMaxKeyLimit, bWeightOut).to_s.force_encoding('utf-8')
   end
 
   def file_keywords(sTextFile, nMaxKeyLimit=50, bWeightOut=NLPIR_FALSE)
     line = NLPIR_GetFileKeyWords_rb.call(sTextFile, nMaxKeyLimit, bWeightOut).to_s
     line.force_encoding('gbk')
-    line.encode!(@charset)
+    line.encode!('utf-8')
   end
 
   def text_newwords(sLine, nMaxKeyLimit=50, bWeightOut=NLPIR_FALSE)
-    NLPIR_GetNewWords_rb.call(sLine, nMaxKeyLimit, bWeightOut).to_s.force_encoding(@charset)
+    NLPIR_GetNewWords_rb.call(sLine, nMaxKeyLimit, bWeightOut).to_s.force_encoding('utf-8')
   end
 
   def file_newwords(sTextFile, nMaxKeyLimit=50, bWeightOut=NLPIR_FALSE)
-    NLPIR_GetFileNewWords_rb.call(sTextFile, nMaxKeyLimit, bWeightOut).to_s.force_encoding(@charset)
+    NLPIR_GetFileNewWords_rb.call(sTextFile, nMaxKeyLimit, bWeightOut).to_s.force_encoding('utf-8')
   end
 
   def text_fingerprint(sLine)
