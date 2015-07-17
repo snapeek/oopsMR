@@ -5,6 +5,7 @@ require 'csv'
 require './sad_panda'
 require './nlpir'
 require "./pocsv"
+include Nlpir
 
 $s = SadPanda.new
 nlpir_init(UTF8_CODE)
