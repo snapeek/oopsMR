@@ -27,7 +27,6 @@ get "/" do
 end
 
 post "/sent" do
-  binding.pry
   unless params[:file] &&  
       (tempfile = params[:file][:tempfile]) &&  
       (filename = params[:file][:filename])  
