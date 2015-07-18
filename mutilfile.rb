@@ -4,7 +4,7 @@ files = Dir.glob("/Users/karma/Downloads/weixin0717/*.csv")
 
 def post_csv(file)
   file = Typhoeus.post(
-    "http://staging.wenjuanba.com:4567/sent",
+    "http://staging.wenjuanba.com:3000/sent",
     body: {
       encode: 'gbk',
       poc: "s",
@@ -15,8 +15,8 @@ def post_csv(file)
 end
 f = files.first
 nf = post_csv(f)
+binding.pry
 ff=File.new(f.gsub('.csv', '_n.csv'), 'w')
 ff.write nf.body
 ff.close
-binding.pry
 files.each { |f|  post_csv(f)}
