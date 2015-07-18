@@ -42,6 +42,15 @@ post "/sent" do
   send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)
 end
 
+post "/api/sent" do
+  lines = Array.new(params[:texts])
+  poc = select_poc(params[:poc], 0)
+  poced = lines.map do |line|
+    poc.call(line)
+  end
+    {:texts => poced}
+end
+
 def select_poc(poc, n = 0)
   n = n >=0 ? n : 0
   case poc
