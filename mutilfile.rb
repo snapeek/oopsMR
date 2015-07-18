@@ -20,6 +20,8 @@ files.each do |f|
     n = f.include?('articles') ? 1 : 0
     puts saved.split('/').last
     nf = post_csv(f, n)
+    binding.pry
+    puts "Error " if nf.response_code != 200
     ff.write nf.body
   end
 end
