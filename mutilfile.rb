@@ -2,12 +2,13 @@ require 'typhoeus'
 require 'pry'
 files = Dir.glob("/Users/karma/Downloads/weixin0717/*.csv")
 
-def post_csv(file)
+def post_csv(file, n =0)
   file = Typhoeus.post(
     "http://staging.wenjuanba.com:3000/sent",
     body: {
       encode: 'gbk',
       poc: "s",
+      n: n.to_s,
       file: File.open(file, "r")
     }
   )
@@ -16,10 +17,12 @@ end
 
 
 files.each do |f| 
-  nf = post_csv(f)
-  f.gsub('Downloads', 'Downloads/new')
-  File.open(f.gsub('.csv', '_n.csv'), 'w') do |ff|
-    binding.pry
+  saved = f.gsub('Downloads', 'Downloads/new')
+  File.open(saved.gsub('.csv', '_n.csv'), 'w') do |ff|
+    n = f.include?('articles') ? 1 : 0
+    # binding.pry
+    puts saved.split('/').last
+    nf = post_csv(f, n)
     ff.write nf.body
   end
 end

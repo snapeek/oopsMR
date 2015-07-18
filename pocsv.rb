@@ -5,7 +5,7 @@ def to_csv(file, rows, encode = "utf-8")
     title = rows.shift << "正负面"
     csv << title.map{|t| en(t, encode)}
     rows.each do |row| 
-      csv << en(row, encode)
+      csv << row.map{|r| en(r, encode)}
     end
   end
   file
