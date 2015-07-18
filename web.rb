@@ -45,19 +45,17 @@ end
 post "/api/sent" do
   lines = Array(params[:texts])
   poc = select_poc(params[:poc], 0)
-  poced = lines.map do |line|
+   lines.map do |line|
     poc.call([line])
   end
-    {:texts => poced}
 end
 
 get "/api/sent" do
   lines = Array(params[:texts])
   poc = select_poc(params[:poc], 0)
-  poced = lines.map do |line|
+   lines.map do |line|
     poc.call([line])
   end
-    {:texts => poced}
 end
 
 def select_poc(poc, n = 0)
