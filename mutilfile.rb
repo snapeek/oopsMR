@@ -18,7 +18,8 @@ end
 files.each do |f| 
   nf = post_csv(f)
   f.gsub('Downloads', 'Downloads/new')
-  File.new(f.gsub('.csv', '_n.csv'), 'w') do |ff|
+  File.open(f.gsub('.csv', '_n.csv'), 'w') do |ff|
+    binding.pry
     ff.write nf.body
   end
 end
