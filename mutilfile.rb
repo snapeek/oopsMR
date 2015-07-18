@@ -15,8 +15,8 @@ def post_csv(file)
 end
 f = files.first
 nf = post_csv(f)
-binding.pry
 ff=File.new(f.gsub('.csv', '_n.csv'), 'w')
 ff.write nf.body
 ff.close
+binding.pry
 files.each { |f|  post_csv(f)}
