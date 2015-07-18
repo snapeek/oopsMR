@@ -55,7 +55,7 @@ get "/api/sent" do
   lines = Array.new(params[:texts])
   poc = select_poc(params[:poc], 0)
   poced = lines.map do |line|
-    poc.call(line)
+    poc.call([line])
   end
     {:texts => poced}
 end
