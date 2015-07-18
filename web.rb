@@ -29,16 +29,20 @@ get "/" do
 end
 
 post "/sent" do
+  unless ['utf-8', 'gbk'].include? params[:encode]
+    @error = '编码必须是 gbk 或者 utf-8'  
+    redirect_to('/')
+  end
   unless params[:file] &&  
       (tempfile = params[:file][:tempfile]) &&  
       (filename = params[:file][:filename])  
-    @error = 'No file selected'  
-    redirect to('/')
+    @error = '没有选择文件'  
+    redirect_to('/')
   end
   target = "./files/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i - 1)
-  csv = load_ori(target, poc)
+  csv = load_ori(target, poc, params[:encode])
   new_file_name = to_csv(target.gsub(".csv", "_#{params[:poc]}.csv") ,csv)
   send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)
 end
@@ -56,6 +60,7 @@ get "/api/sent" do
   lines = Array(params[:texts])
   poc = select_poc(params[:poc], 0)
   poced = lines.map do |line|
+    line = line.match(/^[\u2E80-\u9FFF]+$/).to_s
     poc.call([line])
   end
     {:texts => poced}.to_json

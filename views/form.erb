@@ -6,6 +6,7 @@
 </head>
 <body>
 <form action='/sent' enctype="multipart/form-data" method='POST'>  
+    <p><%= @errors %><p/><br/>
     <input name="file" type="file" /> <br/>
     处理第<input name="n" type="input" value="0" />列 <br/>
 
