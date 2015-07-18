@@ -1,6 +1,7 @@
 require 'sinatra'
 require "pry"
 require 'csv'
+require 'json'
 
 require './sad_panda'
 require './nlpir'
@@ -48,7 +49,7 @@ post "/api/sent" do
   poced = lines.map do |line|
     poc.call([line])
   end
-    {:texts => poced}
+    {:texts => poced}.to_json
 end
 
 get "/api/sent" do
@@ -57,7 +58,7 @@ get "/api/sent" do
   poced = lines.map do |line|
     poc.call([line])
   end
-    {:texts => poced}
+    {:texts => poced}.to_json
 end
 
 def select_poc(poc, n = 0)
