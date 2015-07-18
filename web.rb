@@ -51,7 +51,7 @@ post "/api/sent" do
   lines = Array(params[:texts])
   poc = select_poc(params[:poc], 0)
   poced = lines.map do |line|
-    line = line.match(/[\u2E80-\u9FFF]+/).to_s
+    line = line.gsub(/[^\u2E80-\u9FFF]/, '').to_s
     poc.call([line])
   end
     {:texts => poced}.to_json
@@ -61,7 +61,7 @@ get "/api/sent" do
   lines = Array(params[:texts])
   poc = select_poc(params[:poc], 0)
   poced = lines.map do |line|
-    line = line.match(/[\u2E80-\u9FFF]+/).to_s
+    line = line.gsub(/[^\u2E80-\u9FFF]/, '').to_s
     poc.call([line])
   end
     {:texts => poced}.to_json

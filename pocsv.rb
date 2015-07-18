@@ -53,7 +53,7 @@ def load_ori(file, block, encode = "utf-8")
         line = csv.readline
         break unless line
         Timeout::timeout(5) {
-          line.map!{|str| str.to_s.match(/^[\u2E80-\u9FFF]+$/).to_s.encode(encode,'utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
+          line.map!{|str| str.to_s.gsub(/[^\u2E80-\u9FFF]/, '').to_s.encode(encode,'utf-8',{:invalid => :replace, :undef => :replace, :replace => ''})}
           ary << block.call(line)
         }
         puts "poc on line #{i}" if i % 1000 == 0
