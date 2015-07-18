@@ -8,6 +8,7 @@ def to_csv(file, rows, title = nil, encode = "utf-8")
       csv << title
     elsif title == true
       title = rows.shift
+      title << "正负面"
     end
     if encode == "utf-8"
       csv << title if title 

@@ -29,11 +29,7 @@ get "/" do
 end
 
 post "/sent" do
-  params[:encode] = 'utf-8'
-  # unless ['utf-8', 'gbk'].include? params[:encode]
-    # @error = '编码必须是 gbk 或者 utf-8'  
-    # redirect to('/')
-  # end
+  params[:encode] ||= 'utf-8'
   unless params[:file] &&  
       (tempfile = params[:file][:tempfile]) &&  
       (filename = params[:file][:filename])  
