@@ -1,9 +1,8 @@
 require 'pry'
-def to_csv(file, rows, title = nil, encode = "utf-8")
+def to_csv(file, rows, encode = "utf-8")
   file = file.gsub(".csv", "_new.csv") if File.exist?(file)
   CSV.open(file, "wb") do |csv|
     title = rows.shift << "正负面"
-    binding.pry
     csv << title.map{|t| en(t, encode)}
     rows.each do |row| 
       csv << en(row, encode)
