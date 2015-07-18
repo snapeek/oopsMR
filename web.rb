@@ -33,12 +33,13 @@ post "/sent" do
   unless params[:file] &&  
       (tempfile = params[:file][:tempfile]) &&  
       (filename = params[:file][:filename])  
-    @error = '没有选择文件'  
     redirect to('/')
   end
+
   target = "./files/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i - 1)
+
   csv = load_ori(target, poc, params[:encode])
   new_file_name = to_csv(target.gsub(".csv", "_#{params[:poc]}.csv") ,csv, true)
   send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)

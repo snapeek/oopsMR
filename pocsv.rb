@@ -1,35 +1,8 @@
 require 'timeout'
 def to_csv(file, rows, title = nil, encode = "utf-8")
-  if File.exist?(file)
-    file = file.gsub(".csv", "_new.csv")
-  end
+  file = file.gsub(".csv", "_new.csv") if File.exist?(file)
   CSV.open(file, "wb") do |csv|
-    if title.is_a? Array
-      csv << title
-    elsif title == true
-      title = rows.shift
-      title << "正负面"
-    end
-    if encode == "utf-8"
-      csv << title if title 
-      rows.each do |row| 
-        begin
-          csv << (block_given? ? yield(row) : row) 
-        rescue Exception => e
-          puts "Error"
-          csv << []
-        end
-      end
-    else
-      csv << title.map!{|str| str.to_s.encode(encode, 'utf-8',{:invalid => :replace, :undef => :replace, :replace => '?'}) } if title  
-      rows.each do |row| 
-        if block_given? 
-          csv << yield(row).each{|str| str.to_s.encode('gbk','utf-8',{:invalid => :replace, :undef => :replace, :replace => '?'}) }
-        else 
-          csv << row.each{|str| str.to_s.encode('gbk','utf-8',{:invalid => :replace, :undef => :replace, :replace => '?'}) }
-        end 
-      end
-    end
+    csv << (rows.shift << "正负面")
   end
   file
 end
