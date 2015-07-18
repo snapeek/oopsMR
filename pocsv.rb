@@ -2,14 +2,18 @@ require 'timeout'
 def to_csv(file, rows, title = nil, encode = "utf-8")
   file = file.gsub(".csv", "_new.csv") if File.exist?(file)
   CSV.open(file, "wb") do |csv|
-    csv << (rows.shift << "正负面")
+    csv << en(rows.shift << "正负面", encode)
     rows.each do |row| 
-      csv << row.to_s.encode('utf-8', encode, {
-        :invalid => :replace, :undef => :replace, :replace => ''
-        })
+      csv << en(row, encode)
     end
   end
   file
+end
+
+def en(str, to = 'gbk', ori = 'utf-8')
+  str.to_s.encode(to , ori, {
+    :invalid => :replace, :undef => :replace, :replace => ''
+    })
 end
 
 def to_encode

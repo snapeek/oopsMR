@@ -39,7 +39,6 @@ post "/sent" do
   target = "./files/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
   poc = select_poc(params[:poc], params[:n].to_i - 1)
-
   csv = load_ori(target, poc, params[:encode])
   new_file_name = to_csv(target.gsub(".csv", "_#{params[:poc]}.csv") ,csv, 'gbk')
   send_file(new_file_name, :type => "text/csv", :filename => new_file_name.split('/').last)
