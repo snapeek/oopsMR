@@ -12,15 +12,13 @@ def post_csv(file, n =0)
       file: File.open(file, "r")
     }
   )
-
 end
-
 
 files.each do |f| 
   saved = f.gsub('Downloads', 'Downloads/new')
   File.open(saved.gsub('.csv', '_n.csv'), 'w') do |ff|
     n = f.include?('articles') ? 1 : 0
-    # binding.pry
+    binding.pry
     puts saved.split('/').last
     nf = post_csv(f, n)
     ff.write nf.body
