@@ -52,9 +52,9 @@ post "/api/sent" do
 end
 
 get "/api/sent" do
+  binding.pry
   lines = Array.new(params[:texts])
   poc = select_poc(params[:poc], 0)
-  binding.pry
   poced = lines.map do |line|
     poc.call([line])
   end
