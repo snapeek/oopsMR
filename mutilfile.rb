@@ -13,10 +13,12 @@ def post_csv(file)
   )
 
 end
-f = files.first
-nf = post_csv(f)
-ff=File.new(f.gsub('.csv', '_n.csv'), 'w')
-ff.write nf.body
-ff.close
-binding.pry
-files.each { |f|  post_csv(f)}
+
+
+files.each do |f| 
+  nf = post_csv(f)
+  f.gsub('Downloads', 'Downloads/new')
+  File.new(f.gsub('.csv', '_n.csv'), 'w') do |ff|
+    ff.write nf.body
+  end
+end
