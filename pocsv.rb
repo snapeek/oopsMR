@@ -3,6 +3,11 @@ def to_csv(file, rows, title = nil, encode = "utf-8")
   file = file.gsub(".csv", "_new.csv") if File.exist?(file)
   CSV.open(file, "wb") do |csv|
     csv << (rows.shift << "正负面")
+    rows.each do |row| 
+      csv << row.to_s.encode('utf-8', encode, {
+        :invalid => :replace, :undef => :replace, :replace => ''
+        })
+    end
   end
   file
 end
@@ -21,18 +26,11 @@ def load_ori(file, block, encode = "utf-8")
   ary = []
   i = 0
   CSV.open(file, "r:#{encode}:utf-8") do |csv|
-    while true
-      i += 1
+    while i += 1
       begin
-        line = csv.readline
-        break unless line
-        Timeout::timeout(5) {
-          ary << block.call(line)
-        }
+        break unless line = csv.readline
+        ary << block.call(line)
         puts "poc on line #{i}" if i % 1000 == 0
-      rescue Timeout::Error
-        puts "timeout on line #{i}"
-        ary << line
       rescue Exception => e
         puts "error on line #{i}"
         ary << line
