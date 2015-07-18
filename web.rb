@@ -31,13 +31,13 @@ end
 post "/sent" do
   unless ['utf-8', 'gbk'].include? params[:encode]
     @error = '编码必须是 gbk 或者 utf-8'  
-    redirect_to('/')
+    redirect to('/')
   end
   unless params[:file] &&  
       (tempfile = params[:file][:tempfile]) &&  
       (filename = params[:file][:filename])  
     @error = '没有选择文件'  
-    redirect_to('/')
+    redirect to('/')
   end
   target = "./files/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
